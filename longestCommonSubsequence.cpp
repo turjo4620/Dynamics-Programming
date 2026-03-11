@@ -60,6 +60,8 @@ public:
             dp[0][j] = 0;
         }
 
+        //why comparing text1[i - 1] and text2[j - 1] instead of text1[i] and text2[j] because we are filling the dp array from index 1 to n and from index 1 to m, so the current index of text1 and text2 that we are comparing is i - 1 and j - 1 respectively because the dp array is 1 indexed and the strings are 0 indexed
+        
         for(int i = 1; i <= n; i++){
             for(int j = 1; j <= m; j++){
                 if(text1[i - 1] == text2[j - 1]){
