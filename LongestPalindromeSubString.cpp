@@ -4,55 +4,47 @@ using namespace std;
 
 class Solution {
 public:
-    // Approach : Dynamic Programming
-    // Time Complexity: O(n^2) - we are calculating the longest palindrome substring for each index and for each index we are checking for the longest palindrome substring by expanding around the center
-    // Space Complexity: O(n^2) - we are using a dp array to store the longest palindrome substring for each index
-    //Memorization approach : solve the problem using recursion and store the results in a dp array to avoid redundant calculations
-    // string longestPalindrome(string s) {
-    //     vector<vector<bool>> dp(s.size(), vector<bool>(s.size(), false));
-    //     string longest = "";
-    //     for(int i = 0; i < s.size(); i++){
-    //         dp[i][i] = true;
-    //         longest = s[i];
-    //     }
-    //     for(int i = s.size() - 1; i >= 0; i--){
-    //         for(int j = i + 1; j < s.size(); j++){
-    //             if(s[i] == s[j]){
-    //                 if(j - i == 1 || dp[i + 1][j - 1]){
-    //                     dp[i][j] = true;
-    //                     if(longest.size() < j - i + 1){
-    //                         longest = s.substr(i, j - i + 1);
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return longest;
+    string longestPalindrome(string s) {
 
-    // }
+        string rev = s;
+        reverse(rev.begin(), rev.end());
 
-    //Tabulation approach : solving the problem in a bottom-up manner by filling the dp array from index 0 to n - 1
-    // Time Complexity: O(n^2) - we are calculating the longest palindrome substring for each index and for each index we are checking for the longest palindrome substring by expanding around the center
-    // Space Complexity: O(n^2) - we are using a dp array to store the longest palindrome substring for each index
-        string longestPalindrome(string s) {
-        vector<vector<bool>> dp(s.size(), vector<bool>(s.size(), false));
+        int n = s.size();
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+
+        int longestLen = 0;
         string longest = "";
-        for(int i = 0; i < s.size(); i++){
-            dp[i][i] = true;
-            longest = s[i];
-        }
-        for(int i = s.size() - 1; i >= 0; i--){
-            for(int j = i + 1; j < s.size(); j++){
-                if(s[i] == s[j]){
-                    if(j - i == 1 || dp[i + 1][j - 1]){
-                        dp[i][j] = true;
-                        if(longest.size() < j - i + 1){
-                            longest = s.substr(i, j - i + 1);
+
+        for(int i = 1; i <= n; i++){
+            for(int j = 1; j <= n; j++){
+
+                if(s[i - 1] == rev[j - 1]){
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+
+                    int len = dp[i][j];
+
+                    int start_original = i - len;
+                    int start_reverse  = n - j;
+
+                    // important validation
+                    if(start_original == start_reverse){
+                        if(len > longestLen){
+                            longestLen = len;
+                            longest = s.substr(start_original, len);
                         }
                     }
                 }
+                else{
+                    dp[i][j] = 0;
+                }
             }
         }
+
         return longest;
     }
 };
+
+int main(){
+    
+    return 0;
+}
