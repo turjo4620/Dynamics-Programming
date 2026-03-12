@@ -2,6 +2,12 @@
 
 using namespace std;
 
+//question : given a string s, return the longest palindromic substring in s.
+//input: s = "babad"
+//output: "aba"
+//explanation: "aba" is a palindrome substring of "babad" and it is the longest one. Note that "aba" is also a valid answer.
+
+
 class Solution {
 public:
     string longestPalindrome(string s) {

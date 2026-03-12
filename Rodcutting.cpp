@@ -2,6 +2,12 @@
 
 using namespace std;
 
+//question : given a rod of length n and an array price[] of size n, where price[i] is the price of a rod of length i + 1, return the maximum profit that can be obtained by cutting the rod and selling the pieces. You can cut the rod in any number of pieces and sell them. You can also sell the rod without cutting it.
+//input: n = 4, price = [1, 5, 8,
+//9]
+//output: 10
+//explanation: We can cut the rod into two pieces of length 2 and 2 and sell them to get a profit of 5 + 5 = 10. We can also cut the rod into four pieces of length 1 and sell them to get a profit of 1 + 1 + 1 + 1 = 4. We can also sell the rod without cutting it to get a profit of 8. So, the maximum profit that can be obtained is 10.
+
 //approach 1: Recursion
 // Time Complexity: O(2^n) - we are calculating the Fibonacci number for each index multiple times
 // Space Complexity: O(n) - we are using a recursive stack to calculate the Fibonacci number for each index
@@ -60,6 +66,8 @@ int rodCuttingTabulation(int n, vector<int>& price){
     }
 
 }
+
+
 
 
 int main(){

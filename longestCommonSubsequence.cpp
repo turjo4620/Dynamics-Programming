@@ -8,6 +8,12 @@ int main(){
 }
 
 
+//question : given two strings text1 and text2, return the longest common subsequence of text1 and text2. If there is no common subsequence, return an empty string "".
+//input: text1 = "abcde", text2 = "ace"
+//output: "ace"
+//explanation: The longest common subsequence of text1 and text2 is "ace"
+
+
 class Solution {
 public:
 

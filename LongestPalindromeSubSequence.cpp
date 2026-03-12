@@ -2,6 +2,12 @@
 
 using namespace std;
 
+//question : given a string s, return the minimum number of insertions needed to make s a palindrome.
+//intput: s = "abc"
+//output: 2
+//explanation: we can insert 'b' and 'a' at the end of the string to make it a palindrome "abcba" or we can insert 'c' and 'b' at the beginning of the string to make it a palindrome "cbabc".
+
+
 class Solution {
 public:
 

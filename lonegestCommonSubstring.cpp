@@ -2,6 +2,13 @@
 
 using namespace std;
 
+//question : given two strings text1 and text2, return the longest common subsequence of text1 and text2. If there is no common subsequence, return an empty string "".
+//input: text1 = "abcde", text2 = "ace"
+//output: "ace"
+//explanation: The longest common subsequence of text1 and text2 is "ace"
+//substring : a substring is a contiguous sequence of characters within a string. For example, in the string "abcde", "abc" is a substring, but "ace" is not a substring because it is not contiguous. The longest common substring of text1 and text2 is the longest contiguous sequence of characters that appears in both strings. For example, if text1 = "abcde" and text2 = "ace", then the longest common substring is "a" because it is the longest contiguous sequence of characters that appears in both strings.
+
+
 int LongestCommonSubstring(const string &text1, const string &text2, int i, int j, vector<vector<int>>& dp){
     if( i == 0 || j == 0){
         return 0;
