@@ -15,53 +15,52 @@ explanation: We can include the first item and the second item in the knapsack t
 // Time Complexity: O(2^n) - we are calculating the Fibonacci number for each index multiple times
 // Space Complexity: O(n) - we are using a recursive stack to calculate the Fibonacci number for each index 
 
-int knapsack(int n, vector<int>& weight, vector<int>& value, int capacity) {
-    if(n == 0){
-        if(capacity >= weight[0]){
-            return value[0];
-        }
-        else{
-            return 0;
-        }
-    }
-    int not_take = knapsack(n - 1, weight, value, capacity);
-    int take = INT_MIN;
-    if(capacity >= weight[n]){
-        take = value[n] + knapsack(n - 1, weight, value, capacity - weight[n]);
-    }
-    return max(take, not_take);
+// int knapsack(int n, vector<int>& weight, vector<int>& value, int capacity) {
+//     if(n == 0){
+//         if(capacity >= weight[0]){
+//             return value[0];
+//         }
+//         else{
+//             return 0;
+//         }
+//     }
+//     int not_take = knapsack(n - 1, weight, value, capacity);
+//     int take = INT_MIN;
+//     if(capacity >= weight[n]){
+//         take = value[n] + knapsack(n - 1, weight, value, capacity - weight[n]);
+//     }
+//     return max(take, not_take);
 
-}
+// }
 
-//approach 2: Memoization
+// //approach 2: Memoization
 
-int knapsackMemoization(int n, vector<int>& weight, vector<int>& value, int capacity, vector<vector<int>>& dp) {
-    if(n == 0){
-        if(capacity >= weight[0]){
-            return value[0];
-        }
-        else{
-            return 0;
-        }
-    }
-    if(dp[n][capacity] != -1){
-        return dp[n][capacity];
-    }
-    int not_take = knapsackMemoization(n - 1, weight, value, capacity, dp);
-    int take = INT_MIN;
-    if(capacity >= weight[n]){
-        take = value[n] + knapsackMemoization(n - 1, weight, value, capacity - weight[n], dp);
-    }
-    return dp[n][capacity] = max(take, not_take);
+// int knapsackMemoization(int n, vector<int>& weight, vector<int>& value, int capacity, vector<vector<int>>& dp) {
+//     if(n == 0){
+//         if(capacity >= weight[0]){
+//             return value[0];
+//         }
+//         else{
+//             return 0;
+//         }
+//     }
+//     if(dp[n][capacity] != -1){
+//         return dp[n][capacity];
+//     }
+//     int not_take = knapsackMemoization(n - 1, weight, value, capacity, dp);
+//     int take = INT_MIN;
+//     if(capacity >= weight[n]){
+//         take = value[n] + knapsackMemoization(n - 1, weight, value, capacity - weight[n], dp);
+//     }
+//     return dp[n][capacity] = max(take, not_take);
 
-}
+// }
 
 
 //approach 3: Tabulation
 
-int knapsackTabulation(int n, vector<int>& weight, vector<int>& value, int capacity) {
-    vector<vector<int>> dp(n, vector<int>(capacity + 1, 0));
-
+int knapsackTabulation(int n, vector<int>& weight, vector<int>& value, int capacity, vector<vector<int>> &dp) {
+    
     for(int w = weight[0]; w <= capacity; w++){
         dp[0][w] = value[0];
     }
@@ -83,6 +82,33 @@ int knapsackTabulation(int n, vector<int>& weight, vector<int>& value, int capac
 
 
 int main(){
-    
+    int n; 
+    cin>>n;
+    vector<int>value(n);
+    for(int i = 0; i < n; i++){
+        int a;
+        cin>>a;
+        value[i] = a;
+    }
+    int w;
+    cin>>w;
+    vector<int>weight(w);
+    for(int i = 0; i < w; i++){
+        int b; 
+        cin>>b;
+        weight[i] = b;
+    }
+    int capacity;
+    cin>>capacity;
+    vector<vector<int>> dp(n, vector<int>(capacity + 1, 0));
+    cout<<knapsackTabulation(n, weight, value,capacity, dp);
+    cout<<endl<<endl;
+    for(int i = 0; i < dp.size(); i++){
+        for(int j = 0; j < dp[0].size(); j++){
+            cout<<dp[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
     return 0;
 }
