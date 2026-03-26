@@ -33,20 +33,21 @@ public:
         int m = word1.length(), n = word2.length();
         vector<vector<int>>dp(m, vector<int>(n, -1));
         int lcs = longestCommonSubsequence(word1, word2, m - 1 , n - 1, dp);
-        if(m == lcs){
-            return n - m;
-        }
-        else if(n == lcs){
-            return m - n;
-        }
-        else{
-            return m + n - 2*lcs;
-        }
+
+        return m + n - 2*lcs;
     }
 };
 
 
 int main(){
-    
+    Solution obj;
+
+    string text1 = "sea";
+    string text2 = "eat";
+
+    int result = obj.minDistance(text1, text2);
+
+    cout << result << endl;
+
     return 0;
 }

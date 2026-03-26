@@ -4,6 +4,17 @@ using namespace std;
 
 int main(){
     
+    Solution obj;
+
+    string text1 = "abcde";
+    string text2 = "ace";
+
+    cout << "Memoization LCS length: " 
+         << obj.longestCommonSubsequenceMemo(text1, text2) << endl;
+
+    cout << "Tabulation LCS length: " 
+         << obj.longestCommonSubsequenceTab(text1, text2) << endl;
+
     return 0;
 }
 
@@ -43,7 +54,7 @@ public:
     //Main function to calculate the longest common subsequence of text1 and text2
     // Time Complexity: O(m*n) - we are calculating the longest common subsequence for  each index of text1 and text2 only once
     // Space Complexity: O(m*n) - we are using a dp array to store the longest common subsequence for each index of text1 and text2
-    int longestCommonSubsequence(string text1, string text2) {
+    int longestCommonSubsequenceMemo(string text1, string text2) {
         //We are using a dp array to store the longest common subsequence for each index of text1 and text2 to avoid redundant calculations
         vector<vector<int>> dp(text1.size(), vector<int>(text2.size(), -1));
 
@@ -55,10 +66,11 @@ public:
     //Tabulation approach : solving the problem in a bottom-up manner by filling the dp array from index 0 to m - 1 and from index 0 to n - 1
     // Time Complexity: O(m*n) - we are calculating the longest common subsequence for  each index of text1 and text2 only once
     // Space Complexity: O(m*n) - we are using a dp array to store the  longest common subsequence for each index of text1 and text2
-        int longestCommonSubsequence(string text1, string text2) {
+    int longestCommonSubsequenceTab(string text1, string text2) {
 
         int n = text1.size(), m = text2.size();
         vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+
         for(int i = 0; i <= n; i++){
             dp[i][0] = 0;
         }

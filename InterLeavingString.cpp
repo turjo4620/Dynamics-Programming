@@ -39,6 +39,7 @@ public:
 
         if(i < s1.size() && s1[i] == s3[k]) {
             ans = ans || helper(s1, s2, s3, i + 1, j, dp);
+            if(ans) return dp[i][j] = true; // early stop
         }
 
         if(j < s2.size() && s2[j] == s3[k]) {
