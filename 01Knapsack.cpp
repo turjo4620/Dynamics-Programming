@@ -35,26 +35,26 @@ explanation: We can include the first item and the second item in the knapsack t
 
 // //approach 2: Memoization
 
-// int knapsackMemoization(int n, vector<int>& weight, vector<int>& value, int capacity, vector<vector<int>>& dp) {
-//     if(n == 0){
-//         if(capacity >= weight[0]){
-//             return value[0];
-//         }
-//         else{
-//             return 0;
-//         }
-//     }
-//     if(dp[n][capacity] != -1){
-//         return dp[n][capacity];
-//     }
-//     int not_take = knapsackMemoization(n - 1, weight, value, capacity, dp);
-//     int take = INT_MIN;
-//     if(capacity >= weight[n]){
-//         take = value[n] + knapsackMemoization(n - 1, weight, value, capacity - weight[n], dp);
-//     }
-//     return dp[n][capacity] = max(take, not_take);
+int knapsackMemoization(int n, vector<int>& weight, vector<int>& value, int capacity, vector<vector<int>>& dp) {
+    if(n == 0){
+        if(capacity >= weight[0]){
+            return value[0];
+        }
+        else{
+            return 0;
+        }
+    }
+    if(dp[n][capacity] != -1){
+        return dp[n][capacity];
+    }
+    int not_take = knapsackMemoization(n - 1, weight, value, capacity, dp);
+    int take = INT_MIN;
+    if(capacity >= weight[n]){
+        take = value[n] + knapsackMemoization(n - 1, weight, value, capacity - weight[n], dp);
+    }
+    return dp[n][capacity] = max(take, not_take);
 
-// }
+}
 
 
 //approach 3: Tabulation
